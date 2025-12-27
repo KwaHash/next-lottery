@@ -1,0 +1,45 @@
+'use client'
+
+import { type Control, Controller } from 'react-hook-form'
+import { Input } from '@/components/ui/input'
+import { cn } from '@/lib/utils'
+
+interface ThisFCProps {
+  id: string;
+  value?: string;
+  placeholder?: string;
+  isPassword?: boolean;
+  className?: string;
+  disabled?: boolean;
+  control?: Control<any>;
+}
+
+const InputField: React.FC<ThisFCProps> = ({
+  id,
+  placeholder,
+  isPassword = false,
+  value = '',
+  className,
+  disabled,
+  control,
+}) => {
+  return (
+    <Controller
+      name={id}
+      control={control}
+      defaultValue={value}
+      render={({ field }) => (
+        <Input
+          {...field}
+          id={id}
+          disabled={disabled}
+          className={cn(className, "max-w-[640px] rounded-none")}
+          placeholder={placeholder}
+          type={isPassword === false ? 'text' : 'password'}
+        />
+      )}
+    />
+  )
+}
+
+export default InputField
