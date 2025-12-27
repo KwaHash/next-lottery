@@ -12,6 +12,10 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
+				'm-red': '#e73939',
+				'm-blue': '#006BFF',
+				'm-hover-blue': '#1363DF',
+
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
