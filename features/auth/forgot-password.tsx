@@ -43,7 +43,7 @@ export default function ForgotPasswordPage() {
     const { email } = data
 
     try {
-      await axios.post('/api/auth/reset-password', { email })
+      await axios.post('/api/auth/forgot-password', { email })
       setSuccess('パスワード再設定のためのリンクを、メールにてお送りしております。')
     } catch (err) {
       if (axios.isAxiosError(err)) {
@@ -59,8 +59,11 @@ export default function ForgotPasswordPage() {
         <figure className="flex justify-center mb-2">
           <Image src="/imgs/icons/logo.png" width={200} height={200} alt="宝くじ" />
         </figure>
-        <h1 className="text-2xl text-gray-900 text-center mt-4 font-bold">パスワードが分からない方</h1>
-        <p className="mx-2 text-sm mt-2 mb-8">パスワードのリセット方法を数分以内にメールでご連絡します。</p>
+        <h1 className="text-2xl text-gray-900 text-center mt-4 font-bold">パスワード再設定</h1>
+        <p className="mx-2 text-sm mt-2 mb-8 text-center">
+          パスワード再設定のご案内をお送りいたします<br />
+          ご登録のメールアドレスを入力してください
+        </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-6'>
           <div className="flex flex-col gap-2">
@@ -97,7 +100,7 @@ export default function ForgotPasswordPage() {
                 variant="default"
                 className='w-full rounded-none bg-m-blue hover:bg-m-hover-blue transform transition-all duration-300'
               >
-                パスワードを再設定する
+                送信する
               </Button>
             </div>
           </div>
