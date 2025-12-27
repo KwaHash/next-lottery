@@ -49,15 +49,16 @@ export default function SignUpPage() {
     setSuccess('')
     const { email, password } = data
 
-    const { data: { error, userId } } = await axios.post('/api/auth/register', {
-      email,
-      password,
-    })
-
-    if (error) {
-      setError(error)
-    } else if (userId) {
-      setSuccess('確認用のリンクをメールにてお送りいたしました。')
+    try {
+      const { data: { userId } } = await axios.post('/api/auth/register', { email, password })
+      if (userId) {
+        setSuccess('確認用のリンクをメールにてお送りいたしました。')
+      }
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        const error = err.response?.data?.error;
+        setError(error)
+      }
     }
   }
 

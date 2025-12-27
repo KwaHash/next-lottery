@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     })
     
     if ((users as any[]).length > 0) {
-      return NextResponse.json({ error: 'このメールアドレスは既に登録されています。' }, { status: 200 })
+      return NextResponse.json({ error: 'このメールアドレスは既に登録されています。' }, { status: 400 })
     }
 
     const token = randomBytes(32).toString('hex')
@@ -54,6 +54,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ userId })
   } catch (err) {
     console.error(err)
-    return NextResponse.json({ error: 'Server error.' }, { status: 500 })
+    return NextResponse.json({ error: 'サーバーエラーが発生しました。' }, { status: 500 })
   }
 }
