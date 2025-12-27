@@ -12,9 +12,9 @@ export async function POST(req: Request) {
       return users.length === 1 ? users[0] : null
     })
     if (!row || new Date(row.expires_at) < new Date()) {
-      return NextResponse.json({ error: 'トークンが無効、または有効期限切れです。' }, { status: 200 })
+      return NextResponse.json({ error: 'トークンが無効、または有効期限切れです。' }, { status: 400 })
     }
-    
+
     await withDatabase(async (db) => {
       await db.query('UPDATE users SET is_verified = TRUE WHERE id = ?', [row.user_id])
       await db.query('DELETE FROM verification_tokens WHERE token = ?', [token])
@@ -22,7 +22,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true })
   } catch (err) {
     console.error(err)
-    return NextResponse.json({ error: 'Server error.' }, { status: 500 })
+    return NextResponse.json({ error: 'サーバーエラーが発生しました。' }, { status: 500 })
   }
 }
 
