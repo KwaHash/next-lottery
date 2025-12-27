@@ -19,7 +19,7 @@ export async function POST(req: Request) {
       await db.query('UPDATE users SET is_verified = TRUE WHERE id = ?', [row.user_id])
       await db.query('DELETE FROM verification_tokens WHERE token = ?', [token])
     })
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ user_id: row.user_id })
   } catch (err) {
     console.error(err)
     return NextResponse.json({ error: 'サーバーエラーが発生しました。' }, { status: 500 })

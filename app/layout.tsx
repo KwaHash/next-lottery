@@ -5,7 +5,6 @@ import { type Metadata, type Viewport } from 'next'
 import Providers from './providers'
 import DeleteConfirmationDialog from '@/components/dialog/delete-confirmation-dialog'
 import InfoConfirmationDialog from '@/components/dialog/info-confirmation-dialog'
-import NavBar from '@/components/header/nav-bar'
 import PreloadResources from '@/components/preload-resources'
 import ScrollTopButton from '@/components/scroll-top-button'
 import TailwindIndicator from '@/components/tailwind-indicator'
@@ -74,12 +73,9 @@ export default function RootLayout({
         <HolyLoader color="#9333ea" height="1px" easing="linear" />
         <Providers>
           <div className='flex flex-col w-full min-h-screen overflow-x-hidden overflow-y-auto'>
-            <NavBar />
-            <main className='flex flex-col w-full min-h-[calc(100dvh_-_80px)] mt-20'>
-              {children}
-            </main>
-            <ScrollTopButton />
+            {children}
           </div>
+          <ScrollTopButton />
           <TailwindIndicator />
           <InfoConfirmationDialog />
           <DeleteConfirmationDialog />

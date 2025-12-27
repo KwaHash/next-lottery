@@ -1,47 +1,16 @@
-import { randomBytes } from 'crypto'
+import bcrypt from 'bcrypt'
 import { NextResponse } from 'next/server'
-import { withDatabase } from "@/lib/db"
-import sgMail from "@sendgrid/mail"
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY as string)
+import { withDatabase } from '@/lib/db'
 
 export async function POST(req: Request) {
   try {
-    const { email } = await req.json()
-    if (!email) {
-      return NextResponse.json({ error: 'メールアドレスは必須です。' }, { status: 400 })
+    const { userId, password } = await req.json()
+    if (!password) {
+      return NextResponse.json({ error: 'パスワードは必須です。' }, { status: 400 })
     }
-
-    const user = await withDatabase(async (db) => {
-      const [users]: any = await db.query('SELECT id FROM users WHERE email = ?', [email])
-      return users.length === 1 ? users[0] : null
-    })
-
-    if (!user) {
-      return NextResponse.json({ success: true }) // Don't reveal registered/not
-    }
-    const token = randomBytes(32).toString('hex')
-    const expires = new Date(Date.now() + 1000 * 60 * 60) // 1 hour
-    const resetUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/reset-password?token=${token}`
-
-    const msg = {
-      from: {
-        email: process.env.SENDGRID_EMAIL_ADDRESS!,
-        name: process.env.SENDGRID_EMAIL_NAME,
-      },
-      to: email,
-      subject: 'パスワードを再設定',
-      html: `<p>パスワードを再設定のため、以下のリンクをクリックしてください：<a href="${resetUrl}">こちら</a></p><p>このリンクは1時間で有効期限が切れます。</p>`,
-      tracking_settings: {
-        click_tracking: {
-          enable: false,
-        },
-      },
-    }
-
-    await sgMail.send(msg)
+    const hash = await bcrypt.hash(password, 10)
     await withDatabase(async (db) => {
-      await db.query('INSERT INTO verification_tokens (user_id, token, expires_at) VALUES (?, ?, ?)', [user.id, token, expires])
+      await db.query('UPDATE users SET password = ? WHERE id = ?', [hash, userId])
     })
     return NextResponse.json({ success: true })
   } catch (err) {
