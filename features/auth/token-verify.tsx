@@ -13,18 +13,15 @@ const VerifyPage = () => {
 
   useEffect(() => {
     const token = searchParams.get('token')
-    if (!token) {
-      setError('トークンが無効です。')
-      setIsLoading(false)
-      return
-    }
-
     const verify = async () => {
-      const { data: { error } } = await axios.post('/api/auth/verify', { token })
-      if (error) {
-        setError(error)
-      } else {
+      try {
+        await axios.post('/api/auth/verify', { token })
         router.push('/login')
+      } catch (err) {
+        if (axios.isAxiosError(err)) {
+          const error = err.response?.data?.error
+          setError(error)
+        }
       }
       setIsLoading(false)
 
