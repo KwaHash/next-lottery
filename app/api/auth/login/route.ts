@@ -15,7 +15,7 @@ export async function POST(req: Request) {
       return rows.length === 1 ? rows[0] : null
     })
     if (!user) {
-      return NextResponse.json({ error: 'メールアドレスかパスワードが違います。' }, { status: 401 })
+      return NextResponse.json({ error: 'メールアドレスが登録されていません。' }, { status: 401 })
     }
     if (!user.is_verified) {
       return NextResponse.json({ error: 'メールアドレスが確認されていません。' }, { status: 403 })

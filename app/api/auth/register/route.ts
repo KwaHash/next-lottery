@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
       },
       to: email,
       subject: 'メールアドレスの確認',
-      html: `<p>メールアドレスの確認のため、以下のリンクをクリックしてください：<a href="${verifyUrl}">こちら</a></p><p>このリンクは24時間で有効期限が切れます。</p>`,
+      html: `<p>メールアドレスの確認をご希望の場合は、こちらのリンクをクリックしてください。<a href="${verifyUrl}">こちら</a><br />なお、こちらのリンクは1回限り有効で、24時間後に無効となりますのでご注意ください。</p>`,
       tracking_settings: {
         click_tracking: {
           enable: false,
