@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       },
       to: email,
       subject: 'パスワードを再設定',
-      html: `<p>パスワードを再設定のため、以下のリンクをクリックしてください：<a href="${resetUrl}">こちら</a></p><p>このリンクは1時間で有効期限が切れます。</p>`,
+      html: `<p>パスワードの再設定をご希望の場合は、こちらのリンクをクリックしてください。<a href="${resetUrl}">こちら</a><br />なお、こちらのリンクは1回限り有効で、1時間後に無効となりますのでご注意ください。</p>`,
       tracking_settings: {
         click_tracking: {
           enable: false,
