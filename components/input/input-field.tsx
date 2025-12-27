@@ -33,7 +33,7 @@ const InputField: React.FC<ThisFCProps> = ({
           {...field}
           id={id}
           disabled={disabled}
-          className={cn(className, "max-w-[640px] rounded-none")}
+          className={cn(className, 'max-w-[640px] rounded-none')}
           placeholder={placeholder}
           type={isPassword === false ? 'text' : 'password'}
         />
