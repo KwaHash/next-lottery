@@ -42,16 +42,16 @@ export async function POST(req: NextRequest) {
     // }
     // await sgMail.send(msg)
     const hash = await bcrypt.hash(password, 10)
-    const userId = await withDatabase(async (db) => {
+    const user_id = await withDatabase(async (db) => {
       const [result] = await db.query('INSERT INTO users (email, password) VALUES (?, ?)', [email, hash])
       return (result as any).insertId
     })
 
     // await withDatabase(async (db) => {
-    //   await db.query('INSERT INTO verification_tokens (user_id, token, expires_at) VALUES (?, ?, ?)', [userId, token, expires])
+    //   await db.query('INSERT INTO verification_tokens (user_id, token, expires_at) VALUES (?, ?, ?)', [user_id, token, expires])
     // })
 
-    return NextResponse.json({ userId })
+    return NextResponse.json({ user_id })
   } catch (err) {
     console.error(err)
     return NextResponse.json({ error: 'サーバーエラーが発生しました。' }, { status: 500 })

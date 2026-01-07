@@ -52,8 +52,8 @@ export default function SignUpPage() {
     const { email, password } = data
 
     try {
-      const { data: { userId } } = await axios.post('/api/auth/register', { email, password })
-      if (userId) {
+      const { data: { user_id } } = await axios.post('/api/auth/register', { email, password })
+      if (user_id) {
         router.push('/login')
       }
     } catch (err) {
