@@ -163,7 +163,7 @@ const storybookConfigs = [
 ];
 
 export default pluginTypeScriptEslint.config(
-  { ignores: ["**/.next/**", "**/public/**", "**/api/**"] },
+  { ignores: ["**/.next/**", "**/public/**", "**/*/**"] },
   reactConfig,
   importConfig,
   ...tsEslintConfigs,
