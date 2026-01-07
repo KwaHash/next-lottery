@@ -46,7 +46,11 @@ export default function LogInPage() {
     const { email, password } = data
 
     try {
-      await axios.post('/api/auth/login', { email, password })
+      const { data: { access_token, refresh_token } } = await axios.post('/api/auth/login', { email, password })
+      localStorage.setItem("jwt-token", JSON.stringify({
+        access_token,
+        refresh_token
+      }))
       router.push('/')
     } catch (err) {
       if (axios.isAxiosError(err)) {

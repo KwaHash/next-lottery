@@ -44,7 +44,7 @@ export default function ForgotPasswordPage() {
 
     try {
       await axios.post('/api/auth/forgot-password', { email })
-      setSuccess('パスワード再設定のためのリンクを、メールにてお送りしております。')
+      setSuccess('確認用のリンクをメールで送信しましたので、ご確認ください。')
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const error = err.response?.data?.error

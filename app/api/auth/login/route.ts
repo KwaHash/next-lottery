@@ -11,21 +11,27 @@ export async function POST(req: Request) {
     }
 
     const user = await withDatabase(async (db) => {
-      const [rows]: any = await db.query('SELECT id, password, is_verified FROM users WHERE email = ?', [email])
+      const [rows]: any = await db.query('SELECT id, password, balance FROM users WHERE email = ?', [email])
       return rows.length === 1 ? rows[0] : null
     })
     if (!user) {
-      return NextResponse.json({ error: 'メールアドレスが登録されていません。' }, { status: 401 })
-    }
-    if (!user.is_verified) {
-      return NextResponse.json({ error: 'メールアドレスが確認されていません。' }, { status: 403 })
+      return NextResponse.json({ error: 'メールアドレスが正しくありません。' }, { status: 401 })
     }
     const valid = await bcrypt.compare(password, user.password)
     if (!valid) {
       return NextResponse.json({ error: 'パスワードが正しくありません。' }, { status: 401 })
     }
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: '7d' })
-    return NextResponse.json({ token, userId: user.id })
+    const accessToken = jwt.sign(
+      { userId: user.id, userEmail: user.email },
+      process.env.ACCESS_TOKEN_SECRET || "access_token_secret",
+      { expiresIn: '1d' }
+    )
+    const refreshToken = jwt.sign(
+      { userId: user.id, userEmail: user.email },
+      process.env.REFRESH_TOKEN_SECRET || "refresh_token_secret",
+      { expiresIn: '7d' }
+    )
+    return NextResponse.json({ access_token: accessToken, refresh_token: refreshToken })
   } catch (err) {
     console.error(err)
     return NextResponse.json({ error: 'サーバーエラーが発生しました。' }, { status: 500 })
