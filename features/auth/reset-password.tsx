@@ -23,7 +23,7 @@ interface IResetPasswordForm {
 
 const ResetPasswordPage = () => {
   const router = useRouter()
-  const [userId, setUserId] = useState<string>('')
+  const [user_id, setUserId] = useState<string>('')
   const searchParams = useSearchParams()
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -49,8 +49,8 @@ const ResetPasswordPage = () => {
     const verify = async () => {
       setError('')
       try {
-        const { data: { user_id }} = await axios.post('/api/auth/verify', { token, user_verify: false })
-        setUserId(user_id)
+        const { data } = await axios.post('/api/auth/verify', { token, user_verify: false })
+        setUserId(data.user_id)
       } catch (err) {
         if (axios.isAxiosError(err)) {
           const error = err.response?.data?.error
@@ -79,7 +79,7 @@ const ResetPasswordPage = () => {
     const { password } = data
 
     try {
-      await axios.post('/api/auth/reset-password', { userId, password })
+      await axios.post('/api/auth/reset-password', { user_id, password })
       router.push('/login')
     } catch (err) {
       if (axios.isAxiosError(err)) {

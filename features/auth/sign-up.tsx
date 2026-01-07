@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { yupResolver } from '@hookform/resolvers/yup'
 import axios from 'axios'
 import Image from 'next/image'
@@ -21,6 +22,7 @@ interface ISignUpForm {
 }
 
 export default function SignUpPage() {
+  const router = useRouter()
   const [error, setError] = useState<string>('')
   const [success, setSuccess] = useState<string>('')
 
@@ -50,9 +52,9 @@ export default function SignUpPage() {
     const { email, password } = data
 
     try {
-      const { data: { userId } } = await axios.post('/api/auth/register', { email, password })
-      if (userId) {
-        setSuccess('確認用のリンクをメールにてお送りいたしました。')
+      const { data: { user_id } } = await axios.post('/api/auth/register', { email, password })
+      if (user_id) {
+        router.push('/login')
       }
     } catch (err) {
       if (axios.isAxiosError(err)) {

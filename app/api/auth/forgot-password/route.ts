@@ -30,8 +30,37 @@ export async function POST(req: Request) {
         name: process.env.SENDGRID_EMAIL_NAME,
       },
       to: email,
-      subject: 'パスワードを再設定',
-      html: `<p>パスワードの再設定をご希望の場合は、こちらのリンクをクリックしてください。<a href="${resetUrl}">こちら</a><br />なお、こちらのリンクは1回限り有効で、1時間後に無効となりますのでご注意ください。</p>`,
+      subject: '[ミリオンゲート] パスワードのリセット',
+      html: `
+        <div style="margin: 24px 0; padding: 24px; background: #f9f9f9; border-radius: 8px;">
+          <p style="font-size: 16px;">
+            パスワードをリセットするには次のアドレスを開いてください。<br />
+            リセットしない場合はこのメールを無視してください。
+          </p>
+          <a 
+            style="
+              display: inline-block;
+              padding: 14px 28px;
+              background: #0166d6;
+              color: #fff;
+              border-radius: 4px;
+              text-decoration: none;
+              font-weight: bold;
+              font-size: 15px;
+              text-align: center;
+            "
+            href="${resetUrl}"
+            target="_blank"
+          >
+            パスワードをリセットする
+          </a>
+          <p style="font-size: 14px; color: #777;">
+            なお、こちらのリンクは1回限り有効で、1時間後に無効となりますのでご注意ください。<br>
+            万が一ボタンがクリックできない場合は、下記URLをブラウザに貼り付けてください：<br>
+            <span style="word-break:break-all; color: #333;">${resetUrl}</span>
+          </p>
+        </div>
+      `,
       tracking_settings: {
         click_tracking: {
           enable: false,

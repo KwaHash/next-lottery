@@ -16,7 +16,6 @@ export async function POST(req: Request) {
     }
 
     await withDatabase(async (db) => {
-      await db.query('UPDATE users SET is_verified = TRUE WHERE id = ?', [row.user_id])
       await db.query('DELETE FROM verification_tokens WHERE token = ?', [token])
     })
     return NextResponse.json({ user_id: row.user_id })

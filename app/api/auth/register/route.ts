@@ -1,4 +1,4 @@
-import { randomBytes } from 'crypto'
+// import { randomBytes } from 'crypto'
 import bcrypt from 'bcrypt'
 import { withDatabase } from "@/lib/db"
 import { NextRequest, NextResponse } from "next/server"
@@ -22,36 +22,36 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'このメールアドレスは既に登録されています。' }, { status: 400 })
     }
 
-    const token = randomBytes(32).toString('hex')
-    const expires = new Date(Date.now() + 1000 * 60 * 60 * 24) // 24 hours
-    const verifyUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/verify?token=${token}`
+    // const token = randomBytes(32).toString('hex')
+    // const expires = new Date(Date.now() + 1000 * 60 * 60 * 24) // 24 hours
+    // const verifyUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/verify?token=${token}`
 
-    const msg = {
-      from: {
-        email: process.env.SENDGRID_EMAIL_ADDRESS!,
-        name: process.env.SENDGRID_EMAIL_NAME,
-      },
-      to: email,
-      subject: 'メールアドレスの確認',
-      html: `<p>メールアドレスの確認をご希望の場合は、こちらのリンクをクリックしてください。<a href="${verifyUrl}">こちら</a><br />なお、こちらのリンクは1回限り有効で、24時間後に無効となりますのでご注意ください。</p>`,
-      tracking_settings: {
-        click_tracking: {
-          enable: false,
-        },
-      },
-    }
-    await sgMail.send(msg)
+    // const msg = {
+    //   from: {
+    //     email: process.env.SENDGRID_EMAIL_ADDRESS!,
+    //     name: process.env.SENDGRID_EMAIL_NAME,
+    //   },
+    //   to: email,
+    //   subject: 'メールアドレスの確認',
+    //   html: `<p>メールアドレスの確認をご希望の場合は、こちらのリンクをクリックしてください。<a href="${verifyUrl}">こちら</a><br />なお、こちらのリンクは1回限り有効で、24時間後に無効となりますのでご注意ください。</p>`,
+    //   tracking_settings: {
+    //     click_tracking: {
+    //       enable: false,
+    //     },
+    //   },
+    // }
+    // await sgMail.send(msg)
     const hash = await bcrypt.hash(password, 10)
-    const userId = await withDatabase(async (db) => {
+    const user_id = await withDatabase(async (db) => {
       const [result] = await db.query('INSERT INTO users (email, password) VALUES (?, ?)', [email, hash])
       return (result as any).insertId
     })
 
-    await withDatabase(async (db) => {
-      await db.query('INSERT INTO verification_tokens (user_id, token, expires_at) VALUES (?, ?, ?)', [userId, token, expires])
-    })
+    // await withDatabase(async (db) => {
+    //   await db.query('INSERT INTO verification_tokens (user_id, token, expires_at) VALUES (?, ?, ?)', [user_id, token, expires])
+    // })
 
-    return NextResponse.json({ userId })
+    return NextResponse.json({ user_id })
   } catch (err) {
     console.error(err)
     return NextResponse.json({ error: 'サーバーエラーが発生しました。' }, { status: 500 })
