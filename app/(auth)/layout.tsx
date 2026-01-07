@@ -1,4 +1,4 @@
-import '@/styles/globals.scss'
+import AuthHeader from "@/components/header/auth-header"
 
 export default function AuthLayout({
   children,
@@ -6,8 +6,11 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex w-full min-h-screen grow bg-[#eee]">
-      {children}
-    </main>
+    <>
+      <AuthHeader />
+      <main className="flex w-full grow bg-[#eee] min-h-[calc(100dvh_-_88px)]">
+        {children}
+      </main>
+    </>
   )
 }
