@@ -24,12 +24,12 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_HOST),
-  title: '',
-  applicationName: '',
+  title: 'ミリオンゲート',
+  applicationName: 'ミリオンゲート',
   description: '',
   openGraph: {
-    title: '',
-    siteName: '',
+    title: 'ミリオンゲート',
+    siteName: 'ミリオンゲート',
     description: '',
     type: 'website',
     images: [''],

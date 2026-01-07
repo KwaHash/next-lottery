@@ -95,14 +95,13 @@ const ResetPasswordPage = () => {
         <figure className="flex justify-center mb-2">
           <Image src="/imgs/icons/logo.png" width={200} height={200} alt="宝くじ" />
         </figure>
-        <h1 className="text-2xl text-gray-900 text-center mt-4 font-bold">パスワードが分からない方</h1>
-        <p className="mx-2 text-sm mt-2 mb-8">パスワードのリセット方法を数分以内にメールでご連絡します。</p>
+        <h1 className="text-2xl text-gray-900 text-center mt-4 mb-8 font-bold">パスワード再設定</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-6'>
         <div className="flex flex-col gap-2">
             <div className="flex gap-1 items-center">
               <FiLock className="text-lg" />
-              <Label htmlFor="password">パスワード</Label>
+              <Label htmlFor="password">新しいパスワード</Label>
               <RequiredLabel />
             </div>
             <div className="w-full">
@@ -123,7 +122,7 @@ const ResetPasswordPage = () => {
           <div className="flex flex-col gap-2">
             <div className="flex gap-1 items-center">
               <FiLock className="text-lg" />
-              <Label htmlFor="confirm_password">パスワード（確認用）</Label>
+              <Label htmlFor="confirm_password">パスワードの確認</Label>
               <RequiredLabel />
             </div>
             <div className="w-full">
@@ -155,7 +154,7 @@ const ResetPasswordPage = () => {
                 variant="default"
                 className='w-full rounded-none bg-m-blue hover:bg-m-hover-blue transform transition-all duration-300'
               >
-                サインアップ
+                設定する
               </Button>
             </div>
           </div>

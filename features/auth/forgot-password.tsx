@@ -60,10 +60,7 @@ export default function ForgotPasswordPage() {
           <Image src="/imgs/icons/logo.png" width={200} height={200} alt="宝くじ" />
         </figure>
         <h1 className="text-2xl text-gray-900 text-center mt-4 font-bold">パスワード再設定</h1>
-        <p className="mx-2 text-sm mt-2 mb-8 text-center">
-          パスワード再設定のご案内をお送りいたします<br />
-          ご登録のメールアドレスを入力してください
-        </p>
+        <p className="mx-2 text-sm text-center mt-2 mb-8">パスワード再設定のご案内をお送りいたします<br />ご登録のメールアドレスを入力してください</p>
 
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-6'>
           <div className="flex flex-col gap-2">
