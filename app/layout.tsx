@@ -9,7 +9,6 @@ import PreloadResources from '@/components/preload-resources'
 import ScrollTopButton from '@/components/scroll-top-button'
 import TailwindIndicator from '@/components/tailwind-indicator'
 import { env } from '@/lib/config'
-import { notoSansJP } from '@/lib/fonts'
 
 export const viewport: Viewport = {
   themeColor: [
@@ -69,7 +68,7 @@ export default function RootLayout({
     <StrictMode>
       <PreloadResources />
       <html lang='jp' suppressHydrationWarning>
-      <body className={notoSansJP.className}>
+      <body>
         <HolyLoader color="#9333ea" height="1px" easing="linear" />
         <Providers>
           <div className='flex flex-col w-full min-h-screen overflow-x-hidden overflow-y-auto'>
