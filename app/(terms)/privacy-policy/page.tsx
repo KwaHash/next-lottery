@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import CommonFooter from "@/components/footer/common-footer"
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー | ミリオンゲート",
@@ -198,7 +197,6 @@ export default function PrivacyPolicyPage() {
           </div>
         </article>
       </div>
-      <CommonFooter />
     </div>
   )
 }

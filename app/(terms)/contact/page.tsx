@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import CommonFooter from "@/components/footer/common-footer"
 
 export const metadata: Metadata = {
   title: "お問合せ | ミリオンゲート",
@@ -61,7 +60,6 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-      <CommonFooter />
     </div>
   )
 }
