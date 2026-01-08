@@ -10,7 +10,7 @@ export default function AuthLayout({
 }>) {
   return (
     <Providers>
-      <div className=" mb-[78px] md:mb-0">
+      <div className="flex flex-col min-h-screen mb-[78px] md:mb-0">
         <MainHeader />
         <main className="flex flex-col w-full grow bg-[#eee]">
           {children}
