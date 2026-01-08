@@ -1,22 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import { useRouter, useSearchParams } from 'next/navigation'
-import LoadingIndicator from '@/components/loading-indicator'
-import { yupResolver } from '@hookform/resolvers/yup'
 import Image from 'next/image'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { FaKey } from "react-icons/fa"
 import Link from 'next/link'
-import { useForm } from 'react-hook-form'
-import { FiLock } from 'react-icons/fi'
-import { HiMiniArrowRightStartOnRectangle } from 'react-icons/hi2'
-import * as yup from 'yup'
-import InputField from '@/components/input/input-field'
-import RequiredLabel from '@/components/label/required-label'
-import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
 
 const HomePage = () => {
   return (
@@ -24,7 +10,7 @@ const HomePage = () => {
       <div className='w-full px-2'>
         <hr className='my-6 border-2 border-m-gold max-w-[150px] mx-auto' />
         <p className='text-center font-bold text-2xl mb-10'>ロト6情報(月・木)</p>
-        <div className='flex flex-col gap-6'>
+        <div className='flex flex-col gap-6 max-w-[1024px] mx-auto'>
           <figure className='w-full'>
             <Link href="#">
               <Image src="/imgs/black-btn.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
@@ -98,10 +84,10 @@ const HomePage = () => {
             ※弊社の情報利用により生じた損害において、返金は対応できかねますので予めご了承の上ご利用下さい。
           </p>
           <div className="flex flex-wrap justify-center gap-2 text-sm text-white leading-relaxed">
-            <Link href="#" className="underline hover:text-white mr-2">お問合せ先</Link>
-            <Link href="#" className="underline hover:text-white mx-2">利用規約</Link>
-            <Link href="#" className="underline hover:text-white mx-2">特商引法に基づく表記</Link>
-            <Link href="#" className="underline hover:text-white ml-2">プライバシーポリシー</Link>
+            <Link href="/contact" className="underline hover:text-white mr-2">お問合せ先</Link>
+            <Link href="/terms-of-use" className="underline hover:text-white mx-2">利用規約</Link>
+            <Link href="/commercial-law" className="underline hover:text-white mx-2">特商引法に基づく表記</Link>
+            <Link href="/privacy-policy" className="underline hover:text-white ml-2">プライバシーポリシー</Link>
           </div>
           <p className="text-sm text-white">© 2026 ミリオンゲート All rights reserved.</p>
         </div>
