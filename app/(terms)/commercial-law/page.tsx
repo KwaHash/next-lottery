@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import CommonFooter from "@/components/footer/common-footer"
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 
 export const metadata: Metadata = {
@@ -156,7 +155,6 @@ export default function CommercialLawPage() {
           </div>
         </article>
       </div>
-      <CommonFooter />
     </div>
   )
 }
