@@ -1,22 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import { useRouter, useSearchParams } from 'next/navigation'
-import LoadingIndicator from '@/components/loading-indicator'
-import { yupResolver } from '@hookform/resolvers/yup'
 import Image from 'next/image'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { FaKey } from "react-icons/fa"
 import Link from 'next/link'
-import { useForm } from 'react-hook-form'
-import { FiLock } from 'react-icons/fi'
-import { HiMiniArrowRightStartOnRectangle } from 'react-icons/hi2'
-import * as yup from 'yup'
-import InputField from '@/components/input/input-field'
-import RequiredLabel from '@/components/label/required-label'
-import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
 
 const NonMemberPage = () => {
   return (
