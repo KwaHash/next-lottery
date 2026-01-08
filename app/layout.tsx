@@ -2,9 +2,6 @@ import '@/styles/globals.scss'
 import { StrictMode } from 'react'
 import HolyLoader from 'holy-loader'
 import { type Metadata, type Viewport } from 'next'
-import Providers from './providers'
-import DeleteConfirmationDialog from '@/components/dialog/delete-confirmation-dialog'
-import InfoConfirmationDialog from '@/components/dialog/info-confirmation-dialog'
 import PreloadResources from '@/components/preload-resources'
 import ScrollTopButton from '@/components/scroll-top-button'
 import TailwindIndicator from '@/components/tailwind-indicator'
@@ -70,15 +67,11 @@ export default function RootLayout({
       <html lang='jp' suppressHydrationWarning>
       <body>
         <HolyLoader color="#997b35" height="1px" easing="linear" />
-        <Providers>
-          <div className='flex flex-col w-full min-h-screen overflow-x-hidden overflow-y-auto'>
-            {children}
-          </div>
-          <ScrollTopButton />
-          <TailwindIndicator />
-          <InfoConfirmationDialog />
-          <DeleteConfirmationDialog />
-        </Providers>        
+        <div className='flex flex-col w-full min-h-screen overflow-x-hidden overflow-y-auto'>
+          {children}
+        </div>
+        {/* <ScrollTopButton /> */}
+        <TailwindIndicator />
       </body>
     </html>
     </StrictMode>
