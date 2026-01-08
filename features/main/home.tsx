@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import Link from 'next/link'
+import CommonFooter from "@/components/footer/common-footer"
 
 const HomePage = () => {
   return (
@@ -75,23 +76,7 @@ const HomePage = () => {
           <Image src="/imgs/voice_01.png" alt="ミリオンゲート" width={768} height={768} className='mx-auto' priority />
         </figure>
       </div>
-      <footer className="w-full bg-black text-center px-2 py-10">
-        <div className="flex flex-col items-center justify-center space-y-2">
-          <p className="text-sm text-white leading-relaxed text-left mb-16">
-            ※宝くじの性質上100％の的中はありません。<br />
-            ※当サイトの予想は100％的中を保証する物では御座いません。<br />
-            ※当サイトは当選金の暴落を防ぐ為に、厳正なる参加枠の制限を設けさせていただいております。<br />
-            ※弊社の情報利用により生じた損害において、返金は対応できかねますので予めご了承の上ご利用下さい。
-          </p>
-          <div className="flex flex-wrap justify-center gap-2 text-sm text-white leading-relaxed">
-            <Link href="/contact" className="underline hover:text-white mr-2">お問合せ先</Link>
-            <Link href="/terms-of-use" className="underline hover:text-white mx-2">利用規約</Link>
-            <Link href="/commercial-law" className="underline hover:text-white mx-2">特商引法に基づく表記</Link>
-            <Link href="/privacy-policy" className="underline hover:text-white ml-2">プライバシーポリシー</Link>
-          </div>
-          <p className="text-sm text-white">© 2026 ミリオンゲート All rights reserved.</p>
-        </div>
-      </footer>
+      <CommonFooter />
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import CommonFooter from "@/components/footer/common-footer"
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 
@@ -37,7 +38,7 @@ export default function CommercialLawPage() {
                     所在地
                   </TableCell>
                   <TableCell className="py-4 text-sm sm:text-base leading-relaxed">
-                    東京都中野区中野5-54-4 205
+                    {process.env.NEXT_PUBLIC_ADDRESS}
                   </TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-200">
@@ -45,7 +46,7 @@ export default function CommercialLawPage() {
                     電話番号
                   </TableCell>
                   <TableCell className="py-4 text-sm sm:text-base leading-relaxed">
-                    
+                    {process.env.NEXT_PUBLIC_PHONE_NUMBER}
                   </TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-200">
@@ -61,7 +62,8 @@ export default function CommercialLawPage() {
                     メール受付時間
                   </TableCell>
                   <TableCell className="py-4 text-sm sm:text-base leading-relaxed">
-                    
+                    メールでのお問い合わせは受付けておりません。<br />
+                    お問合せはお電話か<Link href="/contact" className="underline text-m-blue hover:text-m-hover-blue">公式LINE</Link>よりお願い致します。
                   </TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-200">
@@ -69,7 +71,7 @@ export default function CommercialLawPage() {
                     問合せ受付メールアドレス
                   </TableCell>
                   <TableCell className="py-4 text-sm sm:text-base leading-relaxed">
-                    info@million-gate.online
+                    {process.env.SENDGRID_EMAIL_ADDRESS}
                   </TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-200">
