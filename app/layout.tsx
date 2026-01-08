@@ -69,7 +69,7 @@ export default function RootLayout({
       <PreloadResources />
       <html lang='jp' suppressHydrationWarning>
       <body>
-        <HolyLoader color="#9333ea" height="1px" easing="linear" />
+        <HolyLoader color="#997b35" height="1px" easing="linear" />
         <Providers>
           <div className='flex flex-col w-full min-h-screen overflow-x-hidden overflow-y-auto'>
             {children}
