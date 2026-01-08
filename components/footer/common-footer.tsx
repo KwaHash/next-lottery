@@ -2,7 +2,7 @@ import Link from "next/link"
 
 const CommonFooter = () => {
   return (
-    <footer className="w-full bg-black text-center px-2 py-10">
+    <footer className="w-full bg-black text-center px-4 py-10">
       <div className="flex flex-col items-center justify-center space-y-2">
         <p className="text-sm text-white leading-relaxed text-left mb-16">
           ※宝くじの性質上100％の的中はありません。<br />
