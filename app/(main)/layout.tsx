@@ -10,12 +10,14 @@ export default function AuthLayout({
 }>) {
   return (
     <Providers>
-      <MainHeader />
-      <main className="flex flex-col w-full grow bg-[#eee] mb-[78px] sm:mb-0">
-        {children}
-      </main>
-      <CommonFooter />
-      <BottomMenu />
+      <div className=" mb-[78px] md:mb-0">
+        <MainHeader />
+        <main className="flex flex-col w-full grow bg-[#eee]">
+          {children}
+        </main>
+        <CommonFooter />
+        <BottomMenu />
+      </div>
     </Providers>
   )
 }

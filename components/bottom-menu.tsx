@@ -17,7 +17,7 @@ const BottomMenu = () => {
   ];
 
   return (
-    <div className="block sm:hidden fixed bottom-0 left-0 right-0">
+    <div className="block md:hidden fixed bottom-0 left-0 right-0">
       <div className="flex items-center justify-around border-t border-gray-300 bg-gray-100 py-4">
         {MenuItems.map((item) => {
           const isActive = pathname.startsWith(item.href);
