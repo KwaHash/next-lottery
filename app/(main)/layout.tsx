@@ -1,3 +1,4 @@
+import Providers from "@/app/providers"
 import MainHeader from "@/components/header/main-header"
 import BottomMenu from "@/components/bottom-menu"
 
@@ -7,12 +8,12 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <Providers>
       <MainHeader />
       <main className="flex w-full grow bg-[#eee] min-h-[calc(100dvh_-_88px)] mb-[78px] sm:mb-0">
         {children}
       </main>
       <BottomMenu />
-    </>
+    </Providers>
   )
 }
