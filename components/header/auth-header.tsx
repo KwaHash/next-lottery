@@ -18,7 +18,7 @@ const AuthHeader = () => {
         {pathName === "/login" ? (
           <Link
             href="/sign-up"
-            className="flex items-center justify-center group space-x-1.5 text-[#997b35] font-bold transition-all duration-500"
+            className="flex items-center justify-center group space-x-1.5 text-m-gold font-bold transition-all duration-500"
           >
             <RiUserAddLine className="text-2xl group-hover:text-white transition-colors duration-300" />
             <span className="group-hover:text-white transition-colors duration-300">サインアップ</span>
@@ -26,7 +26,7 @@ const AuthHeader = () => {
         ) : (
           <Link
             href="/login"
-            className="flex items-center justify-center group space-x-1.5 text-[#997b35] font-bold transition-all duration-500"
+            className="flex items-center justify-center group space-x-1.5 text-m-gold font-bold transition-all duration-500"
           >
             <RiLoginBoxLine className="text-2xl group-hover:text-white transition-colors duration-300" />
             <span className="group-hover:text-white transition-colors duration-300">ログイン</span>
