@@ -1,9 +1,16 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import TimeOut from "@/components/main/time-out"
-import { isTimeOut } from "@/lib/utils"
+import { isTimeOut, isToday } from "@/lib/utils"
 
 const DetailBlackPage = ({ date }: { date: string }) => {
+  const router = useRouter()
+  const isValidDate = isToday(date)
+  if (!isValidDate) {
+    router.push("/plan/black")
+  }
+
   if (isTimeOut()) {
     return <TimeOut />
   }
