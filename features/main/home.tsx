@@ -14,17 +14,17 @@ const HomePage = () => {
         <p className='text-center font-bold text-2xl mb-10'>ロト6情報(月・木)</p>
         <div className='flex flex-col gap-6 max-w-[1024px] mx-auto'>
           <figure className='w-full'>
-            <Link href="#" className='hover:opacity-80 transition-all duration-500'>
+            <Link href="/plan/black" className='hover:opacity-80 transition-all duration-500'>
               <Image src="/imgs/black-btn.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
             </Link>
           </figure>
           <figure className='w-full'>
-            <Link href="#" className='hover:opacity-80 transition-all duration-500'>
+            <Link href="/plan/gold" className='hover:opacity-80 transition-all duration-500'>
               <Image src="/imgs/gold-btn.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
             </Link>
           </figure>
           <figure className='w-full'>
-            <Link href="#" className='hover:opacity-80 transition-all duration-500'>
+            <Link href="/plan/silver" className='hover:opacity-80 transition-all duration-500'>
               <Image src="/imgs/silver-btn.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
             </Link>
           </figure>
