@@ -6,7 +6,7 @@ const DetailSilver = ({ params }: { params: { date: string } }) => {
   const { date } = params
   const isValidDate = isToday(date)
   if (!isValidDate) {
-    redirect("/plan/black")
+    redirect("/plan/silver")
   }
   
   return (
