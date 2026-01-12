@@ -28,3 +28,20 @@ export function formatDateUrl(date: Date): string {
   const day = String(date.getDate()).padStart(2, '0')
   return `${year}-${month}-${day}`
 }
+
+export function parseDateUrl(dateFormat: string): { year: number; month: number; date: number } {
+  const [year, month, date] = dateFormat.split('-').map(Number)
+  return { year, month, date }
+}
+
+export function isToday(dateFormat: string): boolean {
+  const today = formatDateUrl(new Date())
+  return dateFormat === today
+}
+
+export function isTimeOut(date = new Date()): boolean {
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
+  const seconds = date.getSeconds()
+  return hours > 18 || (hours === 18 && (minutes > 0 || seconds > 0))
+}
