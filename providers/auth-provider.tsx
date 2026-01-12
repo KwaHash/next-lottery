@@ -46,8 +46,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       const tokenData = localStorage.getItem("jwt-token");
       if (!tokenData) {
-        router.push("/non-member");
         setIsLoading(false);
+        router.push("/non-member");
         return;
       }
 
@@ -74,13 +74,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
               })
             );
           }
+          setIsLoading(false);
         } else {
+          setIsLoading(false);
           router.push("/non-member");
         }
       } catch {
-        router.push("/non-member");
-      } finally {
         setIsLoading(false);
+        router.push("/non-member");
       }
     };
 
