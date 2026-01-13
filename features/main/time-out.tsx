@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
-const TimeOut = () => {
+const TimeOutPage = () => {
   return (
-    <div className="w-full max-w-[750px] mx-auto grow h-full flex flex-col bg-white p-2">
+    <div className="w-full max-w-[750px] mx-auto grow h-full flex flex-col p-2">
       <h2 className="mt-8 sm:mt-12 text-2xl sm:text-3xl font-bold tracking-wide">本情報は完売致しました</h2>
       <div className="mt-6 sm:mt-12 w-full mx-auto border-2 border-black p-4 sm:p-6 text-center text-sm sm:text-base font-bold">
         <p className="leading-8">大変申し訳ございません。</p>
@@ -17,4 +17,4 @@ const TimeOut = () => {
   )
 }
 
-export default TimeOut
+export default TimeOutPage
