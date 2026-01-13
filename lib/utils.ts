@@ -12,7 +12,7 @@ export function getDayOfWeekJP(date = new Date()): string {
 
 export function isMondayOrThursday(date = new Date()): boolean {
   const dayOfWeek = date.getDay()
-  return dayOfWeek === 1 || dayOfWeek === 4
+  return dayOfWeek === 3 || dayOfWeek === 4
 }
 
 export function formatJPDate(date: Date): string {
