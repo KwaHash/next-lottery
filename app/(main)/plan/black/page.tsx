@@ -8,4 +8,4 @@ const PlanBlack = () => {
   )
 }
 
-export default PlanBlackPage
+export default PlanBlack

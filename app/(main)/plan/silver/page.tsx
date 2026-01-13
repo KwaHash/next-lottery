@@ -1,6 +1,6 @@
 import PlanSilverPage from "@/features/main/plan/plan-silver"
 
-const PlanBlack = () => {
+const PlanSilver = () => {
   return (
     <div className="w-full grow h-full flex flex-col bg-white">
       <PlanSilverPage />
@@ -8,4 +8,4 @@ const PlanBlack = () => {
   )
 }
 
-export default PlanSilverPage
+export default PlanSilver

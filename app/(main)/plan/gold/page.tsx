@@ -1,6 +1,6 @@
 import PlanGoldPage from "@/features/main/plan/plan-gold"
 
-const PlanBlack = () => {
+const PlanGold = () => {
   return (
     <div className="w-full grow h-full flex flex-col bg-white">
       <PlanGoldPage />
@@ -8,4 +8,4 @@ const PlanBlack = () => {
   )
 }
 
-export default PlanGoldPage
+export default PlanGold
