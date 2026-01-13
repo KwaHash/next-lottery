@@ -50,4 +50,16 @@ async function initializeDatabase(db: Connection) {
       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     )
   `)
+
+  // predictions
+  await db.execute(`
+    CREATE TABLE IF NOT EXISTS predictions (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      user_id INT NOT NULL,
+      lottery_numbers JSON NOT NULL,
+      plan VARCHAR(255) NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    )
+  `)
 }

@@ -45,3 +45,53 @@ export function isTimeOut(date = new Date()): boolean {
   const seconds = date.getSeconds()
   return hours > 18 || (hours === 18 && (minutes > 0 || seconds > 0))
 }
+
+function getSecureRandomInt(max: number): number {
+  const array = new Uint32Array(1)
+  const maxValid = Math.floor(0xFFFFFFFF / max) * max
+  
+  let value: number
+  do {
+    crypto.getRandomValues(array)
+    value = array[0]
+  } while (value >= maxValid)
+  
+  return value % max
+}
+
+function shuffleArray<T>(array: T[]): void {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = getSecureRandomInt(i + 1) as number
+    [array[i], array[j]] = [array[j], array[i]]
+  }
+}
+
+export function generateLotteryNumbers(): string[] {
+  const sets: string[] = []
+  const uniqueSets = new Set<string>()
+
+  while (sets.length < 20) {
+    const pool = Array.from({ length: 43 }, (_, i) => i + 1)
+    shuffleArray(pool)
+    const selected: number[] = []
+
+    for (let j = 0; j < 6; j++) {
+      const randomIndex = getSecureRandomInt(pool.length)
+      selected.push(pool[randomIndex])
+      pool.splice(randomIndex, 1)
+    }
+
+    const formatted = selected.sort((a, b) => a - b).join('-')
+    
+    if (!uniqueSets.has(formatted)) {
+      uniqueSets.add(formatted)
+      sets.push(formatted)
+    }
+  }
+
+  return sets
+}
+
+export function isSameDate(date1: Date, date2: Date): boolean {
+  return date1.getFullYear() === date2.getFullYear() && date1.getMonth() === date2.getMonth() && date1.getDate() === date2.getDate()
+}
