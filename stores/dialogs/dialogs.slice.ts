@@ -5,6 +5,7 @@ export interface DialogsState {
     isOpen: boolean
     title: string
     description: string
+    onConfirm: () => void
   },
   deleteDialog: {
     isOpen: boolean
@@ -19,6 +20,7 @@ const initialState: DialogsState = {
     isOpen: false,
     title: '',
     description: '',
+    onConfirm: () => { },
   },
   deleteDialog: {
     isOpen: false,
@@ -39,6 +41,7 @@ const dialogsSlice = createSlice({
           isOpen?: boolean
           title?: string
           description?: string
+          onConfirm?: () => void
         }
       },
     ) {
@@ -46,6 +49,7 @@ const dialogsSlice = createSlice({
         state.confirmDialog.isOpen = false
         state.confirmDialog.title = ''
         state.confirmDialog.description = ''
+        state.confirmDialog.onConfirm = () => { }
       } else {
         state.confirmDialog = {
           ...state.confirmDialog,
