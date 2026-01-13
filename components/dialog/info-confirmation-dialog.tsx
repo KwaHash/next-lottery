@@ -2,6 +2,8 @@
 
 import { Button } from '@/components/ui/button'
 import DialogContentOverlayBlur from '@/components/ui/custom/dialog-content-overlay-blur'
+import { Noto_Sans_JP } from 'next/font/google'
+import { cn } from '@/lib/utils'
 import {
   Dialog,
   DialogDescription,
@@ -12,15 +14,27 @@ import { useConfirmDialog } from '@/stores/dialogs/dialogs.selector'
 import { updateConfirmDialog } from '@/stores/dialogs/dialogs.slice'
 import { useAppDispatch } from '@/stores/store'
 
+const notoSansJP = Noto_Sans_JP({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
+
 const InfoConfirmationDialog = () => {
   const dispatch = useAppDispatch()
   const {
     isOpen,
     title,
     description,
+    onConfirm: onConfirmCallback,
   } = useConfirmDialog()
 
   const onConfirm = () => {
+    onConfirmCallback()
+    dispatch(updateConfirmDialog({ isOpen: false }))
+  }
+
+  const onCancel = () => {
     dispatch(updateConfirmDialog({ isOpen: false }))
   }
 
@@ -31,10 +45,11 @@ const InfoConfirmationDialog = () => {
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogContentOverlayBlur>
-        <DialogTitle>{title}</DialogTitle>
-        <DialogDescription>{description}</DialogDescription>
+        <DialogTitle className="text-xl font-bold tracking-wide text-m-gold">{title}</DialogTitle>
+        <DialogDescription className={cn("text-base text-[#333]", notoSansJP.className)}>{description}</DialogDescription>
         <DialogFooter className='flex flex-col gap-2 sm:flex-row sm:gap-0'>
-          <Button variant="outline" onClick={onConfirm}>確認</Button>
+          <Button className='font-bold bg-m-red text-white hover:bg-m-hover-red transition-all duration-500' onClick={onCancel}>いいえ</Button>
+          <Button className='font-bold bg-m-gold text-white hover:bg-m-hover-gold transition-all duration-500' onClick={onConfirm}>はい</Button>
         </DialogFooter>
       </DialogContentOverlayBlur>
     </Dialog>
