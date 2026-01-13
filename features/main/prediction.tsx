@@ -13,8 +13,6 @@ const PredictionPage = ({ plan, id }: { plan: string, id: number }) => {
   const user = useAuth()
   const router = useRouter()
 
-  console.log("numbers => ", numbers)
-
   useEffect(() => {
     const fetchPrediction = async () => {
       try {
@@ -24,8 +22,7 @@ const PredictionPage = ({ plan, id }: { plan: string, id: number }) => {
         if (user_id !== user.user_id || prediction_plan !== plan || !isSameDate(new Date(created_at), new Date())) {
           router.push(`/plan/${plan}`)
         }
-        console.log("here -> ", lottery_numbers)
-        setNumbers(JSON.parse(lottery_numbers))
+        setNumbers(Array.isArray(lottery_numbers) ? lottery_numbers : JSON.parse(lottery_numbers))
       } catch (err) {
         setIsLoading(false)
         if (axios.isAxiosError(err)) {
