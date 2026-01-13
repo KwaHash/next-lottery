@@ -2,9 +2,8 @@
 
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
-import TimeOut from '@/features/main/time-out'
 import { Button } from '@/components/ui/button'
-import { isTimeOut, isToday , generateLotteryNumbers } from '@/lib/utils'
+import { isToday , generateLotteryNumbers } from '@/lib/utils'
 import { useAuth } from '@/providers/auth-provider'
 import { updateConfirmDialog } from '@/stores/dialogs/dialogs.slice'
 import { useAppDispatch } from '@/stores/store'
@@ -16,10 +15,6 @@ const DetailBlackPage = ({ date }: { date: string }) => {
   const isValidDate = isToday(date)
   if (!isValidDate) {
     router.push('/plan/black')
-  }
-
-  if (isTimeOut()) {
-    return <TimeOut />
   }
 
   const necessary_points = Number(process.env.NEXT_PUBLIC_BLACK_POINTS)
@@ -56,7 +51,7 @@ const DetailBlackPage = ({ date }: { date: string }) => {
   return (
     <div className="w-full h-full grow p-2 flex flex-col items-center justify-center">
       <div className="w-full max-w-[500px] mx-auto p-8 bg-gradient-to-br from-black via-gray-900 to-gray-800 rounded-xl shadow-lg flex flex-col items-center">
-        <h2 className="text-2xl sm:text-3xl font-bold text-m-gold mb-6 shadow-sm">【LOTO6 | Black】購入</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold text-m-gold mb-6 shadow-sm">【LOTO6 | BLACK】購入</h2>
         <div className="w-full flex flex-col gap-4 mb-10">
           <div className="flex justify-between items-center">
             <span className="text-lg text-gray-200 font-semibold">必要ポイント</span>

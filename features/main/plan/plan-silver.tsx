@@ -1,11 +1,39 @@
+"use client"
+
+import axios from "axios"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { isMondayOrThursday, formatJPDate, formatDateUrl } from "@/lib/utils"
+import { isTimeOut } from "@/lib/utils"
+import { useAuth } from "@/providers/auth-provider"
 
 const PlanSilverPage = () => {
+  const { user_id } = useAuth()
+  const [predictionId, setPredictionId] = useState<number | null>(null)
+
   const today = new Date()
   const isMonOrThur = isMondayOrThursday(today)
   const dateUrl = formatDateUrl(today)
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const { data: { prediction_id } } = await axios.post('/api/main/info', {
+          user_id,
+          plan: 'silver',
+        })
+        if (prediction_id) {
+          setPredictionId(prediction_id)
+        }
+      } catch (err) {
+        if (axios.isAxiosError(err)) {
+          // const error = err.response?.data?.error
+        }
+      }
+    }
+    fetchInfo()
+  }, [])
 
   return (
     <>
@@ -20,7 +48,9 @@ const PlanSilverPage = () => {
       <div className="flex flex-col items-center justify-center my-10">
         <p className='text-center text-xl font-bold text-black'>販売中情報</p>
         {isMonOrThur ? (
-          <Link href={`/plan/silver/${dateUrl}`} className='text-center mt-5 text-lg text-m-blue underline hover:no-underline'>
+          <Link href={isTimeOut() ? '/plan/timeout' : predictionId ? `/prediction/silver/${predictionId}` : `/plan/silver/${dateUrl}`}
+            className={`text-center mt-5 text-lg text-m-blue underline hover:cursor-pointer hover:no-underline ${predictionId ? 'cursor-default' : ''}`}
+          >
             {`${formatJPDate(today)}の情報`}
           </Link>
         ) : (
