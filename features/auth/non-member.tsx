@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import Performance from "@/components/main/performance"
+import Performance from "@/features/main/performance"
 import UsersVoice from "@/components/main/users-voice"
 import UsersFaq from "@/components/main/users-faq"
 import { FaKey } from "react-icons/fa"

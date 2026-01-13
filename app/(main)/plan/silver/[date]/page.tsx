@@ -1,4 +1,4 @@
-import DetailSilverPage from "@/components/main/detail/detail-silver"
+import DetailSilverPage from "@/features/main/detail/detail-silver"
 
 const DetailSilver = ({ params }: { params: { date: string } }) => {
   const { date } = params

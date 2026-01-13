@@ -1,4 +1,4 @@
-import PlanBlackPage from "@/components/main/plan/plan-black"
+import PlanBlackPage from "@/features/main/plan/plan-black"
 
 const PlanBlack = () => {
   return (
