@@ -8,10 +8,12 @@ import { useAuth } from "@/providers/auth-provider"
 import { isSameDate } from "@/lib/utils"
 
 const PredictionPage = ({ plan, id }: { plan: string, id: number }) => {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [numbers, setNumbers] = useState<string[]>([])
   const user = useAuth()
   const router = useRouter()
+
+  console.log("numbers => ", numbers)
 
   useEffect(() => {
     const fetchPrediction = async () => {
@@ -22,6 +24,7 @@ const PredictionPage = ({ plan, id }: { plan: string, id: number }) => {
         if (user_id !== user.user_id || prediction_plan !== plan || !isSameDate(new Date(created_at), new Date())) {
           router.push(`/plan/${plan}`)
         }
+        console.log("here -> ", lottery_numbers)
         setNumbers(JSON.parse(lottery_numbers))
       } catch (err) {
         setIsLoading(false)
