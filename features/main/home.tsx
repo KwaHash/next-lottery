@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import Performance from "@/components/main/performance"
+import Performance from "@/features/main/performance"
 import UsersFaq from "@/components/main/users-faq"
 import UsersVoice from "@/components/main/users-voice"
 

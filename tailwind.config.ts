@@ -13,6 +13,7 @@ const config: Config = {
   	extend: {
   		colors: {
   			'm-red': '#e73939',
+				'm-hover-red': '#c22f2f',
   			'm-blue': '#006BFF',
   			'm-gold': '#997b35',
   			'm-hover-blue': '#1363DF',

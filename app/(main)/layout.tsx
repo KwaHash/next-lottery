@@ -2,6 +2,7 @@ import Providers from "@/app/providers"
 import MainHeader from "@/components/header/main-header"
 import BottomMenu from "@/components/bottom-menu"
 import CommonFooter from "@/components/footer/common-footer"
+import InfoConfirmationDialog from "@/components/dialog/info-confirmation-dialog"
 
 export default function AuthLayout({
   children,
@@ -18,6 +19,7 @@ export default function AuthLayout({
         <CommonFooter />
         <BottomMenu />
       </div>
+      <InfoConfirmationDialog />
     </Providers>
   )
 }

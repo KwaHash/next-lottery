@@ -1,4 +1,4 @@
-import DetailBlackPage from "@/components/main/detail/detail-black"
+import DetailBlackPage from "@/features/main/detail/detail-black"
 
 const DetailBlack = ({ params }: { params: { date: string } }) => {
   const { date } = params

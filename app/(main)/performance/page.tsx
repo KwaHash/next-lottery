@@ -1,4 +1,4 @@
-import Performance from "@/components/main/performance"
+import Performance from "@/features/main/performance"
 
 const PerformancePage = () => {
   return (
