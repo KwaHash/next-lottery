@@ -48,8 +48,8 @@ const InfoConfirmationDialog = () => {
         <DialogTitle className="text-xl font-bold tracking-wide text-m-gold">{title}</DialogTitle>
         <DialogDescription className={cn("text-base text-[#333]", notoSansJP.className)}>{description}</DialogDescription>
         <DialogFooter className='flex flex-col gap-2 sm:flex-row sm:gap-0'>
-          <Button className='font-bold bg-m-red text-white hover:bg-m-hover-red transition-all duration-500' onClick={onCancel}>いいえ</Button>
-          <Button className='font-bold bg-m-gold text-white hover:bg-m-hover-gold transition-all duration-500' onClick={onConfirm}>はい</Button>
+          <Button className='font-bold bg-m-red text-white hover:bg-m-hover-red transition-all duration-500' onClick={onConfirm}>はい</Button>
+          <Button className='font-bold bg-m-gray text-white hover:bg-m-hover-gray transition-all duration-500' onClick={onCancel}>いいえ</Button>
         </DialogFooter>
       </DialogContentOverlayBlur>
     </Dialog>
