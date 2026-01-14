@@ -18,6 +18,8 @@ const config: Config = {
   			'm-gold': '#997b35',
   			'm-hover-blue': '#1363DF',
   			'm-hover-gold': '#B1974E',
+				'm-gray': '#808080',
+				'm-hover-gray': '#666666',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
