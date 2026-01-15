@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "お問合せ | ミリオンゲート",
 }
 
+// Force dynamic rendering to avoid static generation issues
+export const dynamic = 'force-dynamic'
+
 export default function ContactPage() {
   return (
     <div className="w-full">
