@@ -14,6 +14,22 @@ const PointPurchasePage = () => {
             <PurchaseButton key={point} points={point} linkUrl="#" />
           ))}
         </div>
+      <div className="mt-20 w-full max-w-[1120px] mx-auto border-2 border-black p-4 sm:p-6 text-sm sm:text-base font-bold">
+        <div className="flex flex-col gap-4">
+          <h3 className="border-l-4 border-m-gold p-2 text-xl font-bold">決済について</h3>
+          <p className="text-base">
+            決済代行会社の決済システムを利用しています。
+          </p>
+        </div>
+        <div className="mt-8 flex flex-col gap-4">
+          <h3 className="border-l-4 border-m-gold p-2 text-xl font-bold">返品（返金）について</h3>
+          <p className="text-base leading-6">
+            デジタルコンテンツという特性上、返品（返金）にはなりません。
+            <br />
+            予めご了承ください。
+          </p>
+        </div>
+      </div>
       </div>
     </div>
   )
