@@ -1,3 +1,6 @@
+import PurchaseButton from "@/components/main/purchase-button"
+import { POINT_PRICES } from "@/lib/constants"
+
 const PointPurchasePage = () => {
   return (
     <div className="w-full px-4 sm:px-8 py-8 sm:py-12">
@@ -6,6 +9,11 @@ const PointPurchasePage = () => {
         <p className="text-center text-base sm:text-lg mt-4 font-bold">
           クレジットカード・銀行振込
         </p>
+        <div className="flex flex-wrap justify-center gap-x-8">
+          {POINT_PRICES.map((point) => (
+            <PurchaseButton key={point} points={point} linkUrl="#" />
+          ))}
+        </div>
       </div>
     </div>
   )
