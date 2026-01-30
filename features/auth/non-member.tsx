@@ -12,13 +12,13 @@ const NonMemberPage = () => {
     <div className="w-full bg-white">
       <div className='w-full px-2'>
         <figure className='w-full'>
-          <Image src="/imgs/non-member_01.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
+          <Image src="/imgs/non-member/non-member_01.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
         </figure>
         <figure className='w-full'>
-          <Image src="/imgs/non-member_02.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
+          <Image src="/imgs/non-member/non-member_02.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
         </figure>
         <figure className='w-full'>
-          <Image src="/imgs/non-member_03.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
+          <Image src="/imgs/non-member/non-member_03.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
         </figure>
       </div>
       <div className='w-full px-2'>
