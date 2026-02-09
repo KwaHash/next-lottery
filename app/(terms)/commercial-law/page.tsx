@@ -29,7 +29,7 @@ export default function CommercialLawPage() {
                     運営責任者
                   </TableCell>
                   <TableCell className="py-4 text-sm sm:text-base leading-relaxed">
-                    別府秀児朗
+                    別府りう子
                   </TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-200">
@@ -53,7 +53,7 @@ export default function CommercialLawPage() {
                     電話受付時間
                   </TableCell>
                   <TableCell className="py-4 text-sm sm:text-base leading-relaxed">
-                    平日13:00から19:00まで
+                    毎日10:00～19:00まで
                   </TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-200">
@@ -63,14 +63,6 @@ export default function CommercialLawPage() {
                   <TableCell className="py-4 text-sm sm:text-base leading-relaxed">
                     メールでのお問い合わせは受付けておりません。<br />
                     お問合せはお電話か<Link href="/contact" className="underline text-m-blue hover:text-m-hover-blue">公式LINE</Link>よりお願い致します。
-                  </TableCell>
-                </TableRow>
-                <TableRow className="border-b border-gray-200">
-                  <TableCell className="py-4 pr-6 align-top font-bold text-sm sm:text-base border-r border-gray-200">
-                    問合せ受付メールアドレス
-                  </TableCell>
-                  <TableCell className="py-4 text-sm sm:text-base leading-relaxed">
-                    {process.env.SENDGRID_EMAIL_ADDRESS}
                   </TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-200">
@@ -140,14 +132,6 @@ export default function CommercialLawPage() {
                   </TableCell>
                   <TableCell className="py-4 text-sm sm:text-base leading-relaxed">
                     商品の性質上、返金、返品については一切お受けできません。
-                  </TableCell>
-                </TableRow>
-                <TableRow className="border-b border-gray-200">
-                  <TableCell className="py-4 pr-6 align-top font-bold text-sm sm:text-base border-r border-gray-200">
-                    退会方法
-                  </TableCell>
-                  <TableCell className="py-4 text-sm sm:text-base leading-relaxed">
-                    メールにてお申し出ください。
                   </TableCell>
                 </TableRow>
               </TableBody>
