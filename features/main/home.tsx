@@ -15,17 +15,17 @@ const HomePage = () => {
         <div className='flex flex-col gap-6 max-w-[1024px] mx-auto'>
           <figure className='w-full'>
             <Link href="/plan/black" className='hover:opacity-80 transition-all duration-500'>
-              <Image src="/imgs/black-btn.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
+              <Image src="/imgs/button/black6.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
             </Link>
           </figure>
           <figure className='w-full'>
             <Link href="/plan/gold" className='hover:opacity-80 transition-all duration-500'>
-              <Image src="/imgs/gold-btn.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
+              <Image src="/imgs/button/gold6.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
             </Link>
           </figure>
           <figure className='w-full'>
             <Link href="/plan/silver" className='hover:opacity-80 transition-all duration-500'>
-              <Image src="/imgs/silver-btn.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
+              <Image src="/imgs/button/silver6.png" alt="ミリオンゲート" width={1024} height={1024} className='mx-auto' priority />
             </Link>
           </figure>
         </div>
