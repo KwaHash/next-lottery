@@ -42,7 +42,7 @@ export default function ContactPage() {
           <h2 className="text-center text-xl sm:text-2xl font-bold mb-4">お問合せ先</h2>
           <div className="border-2 border-black px-6 py-8 text-sm sm:text-base font-bold leading-relaxed">
             <p className="leading-8">宛先：ミリオンゲート運営事務局</p>
-            <p className="leading-8">電話番号：{process.env.NEXT_PUBLIC_PHONE_NUMBER}（受付時間:平日13:00～19:00まで）</p>
+            <p className="leading-8">電話番号：{process.env.NEXT_PUBLIC_PHONE_NUMBER}（受付時間:毎日10:00～19:00まで）</p>
             <p className="leading-8">
               公式LINE：
               <Link
@@ -55,10 +55,6 @@ export default function ContactPage() {
               </Link>
             </p>
             <p className="leading-8">所在地：{process.env.NEXT_PUBLIC_ADDRESS}</p>
-            <p className="leading-8">
-              メールアドレス：{process.env.SENDGRID_EMAIL_ADDRESS}<br />
-              （メールでの受付はしておりません。）
-            </p>
             <p className="leading-8">※お電話か公式LINEよりお問合せ下さい。</p>
           </div>
         </div>
