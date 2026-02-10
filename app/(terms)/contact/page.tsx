@@ -41,7 +41,7 @@ export default function ContactPage() {
         <div className="mt-6 w-full max-w-[1120px] mx-auto">
           <h2 className="text-center text-xl sm:text-2xl font-bold mb-4">お問合せ先</h2>
           <div className="border-2 border-black px-6 py-8 text-sm sm:text-base font-bold leading-relaxed">
-            <p className="leading-8">宛先：ミリオンゲート運営事務局</p>
+            <p className="leading-8">宛先：株式会社ライジング</p>
             <p className="leading-8">電話番号：{process.env.NEXT_PUBLIC_PHONE_NUMBER}（受付時間:毎日10:00～19:00まで）</p>
             <p className="leading-8">
               公式LINE：

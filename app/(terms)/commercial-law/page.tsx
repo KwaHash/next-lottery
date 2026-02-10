@@ -21,7 +21,7 @@ export default function CommercialLawPage() {
                     販売業者
                   </TableCell>
                   <TableCell className="py-4 text-sm sm:text-base leading-relaxed">
-                    ミリオンゲート運営事務局
+                    株式会社ライジング
                   </TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-200">
