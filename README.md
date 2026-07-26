@@ -1,167 +1,117 @@
-# Next.js Skeleton Project
+# ミリオンゲート (Million Gate)
 
-A modern, production-ready Next.js skeleton application built with TypeScript, featuring a comprehensive UI component library, state management, and development tools.
+A members-only web service that sells **LOTO 6 number predictions** to Japanese subscribers. Members buy site points, spend them on a prediction plan on draw day, and receive 20 generated number combinations to play.
 
-## 🚀 Features
+---
 
-- **Next.js 14** with App Router
-- **TypeScript** for type safety
-- **Tailwind CSS** with custom design system
-- **shadcn/ui** component library with Radix UI primitives
-- **Redux Toolkit** for state management
-- **TanStack Query** for server state management
-- **Dark/Light theme** support with next-themes
-- **ESLint & Prettier** for code quality
-- **Husky** for git hooks
-- **HolyLoader** for loading indicators
-
-## 🛠️ Tech Stack
-
-### Development Tools
-- **ESLint** - Code linting
-- **Prettier** - Code formatting
-- **Husky** - Git hooks
-- **TypeScript ESLint** - TypeScript linting
-
-## 📁 Project Structure
+## How it works
 
 ```
-next-skeleton/
-├── app/                    # Next.js App Router
-│   ├── layout.tsx         # Root layout
-│   ├── page.tsx           # Home page
-│   ├── providers.tsx      # App providers
-│   └── manifest.ts        # PWA manifest
-├── components/            # Reusable components
-│   ├── ui/               # shadcn/ui components
-│   ├── dialog/           # Dialog components
-│   ├── header/           # Navigation components
-│   └── ...               # Other components
-├── hooks/                # Custom React hooks
-├── lib/                  # Utility libraries
-│   ├── config.ts         # Environment configuration
-│   ├── fonts.ts          # Font configurations
-│   └── utils.ts          # Utility functions
-├── providers/            # React context providers
-├── stores/               # Redux store configuration
-├── styles/               # Global styles
-└── public/               # Static assets
+Sign up  →  Buy points  →  Pick a plan on draw day  →  Spend points  →  Receive 20 number sets
 ```
 
-## 🚀 Getting Started
+1. A visitor who isn't logged in only ever sees the **non-member landing page** (`/non-member`) — sales copy, winning results, testimonials and FAQ.
+2. After registering and logging in, the member lands on the plan list with the three LOTO 6 tiers.
+3. On a draw day, the plan page exposes a link to *today's* information. Tapping it opens the purchase screen showing the point cost and the member's balance.
+4. Confirming the purchase deducts points, generates the combinations, stores them, and redirects to a private result page.
+5. The result page is permanently tied to that member, that plan and that date — it can only ever be re-opened by its owner, on the same day.
 
-### Prerequisites
+---
 
-- Node.js 18+ 
-- npm, yarn, pnpm, or bun
+## Features
 
-### Installation
+### Three prediction tiers
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd next-skeleton
-   ```
+| Plan | Route | Cost (points) |
+|------|-------|---------------|
+| **BLACK** | `/plan/black` | `NEXT_PUBLIC_BLACK_POINTS` (6,000) |
+| **GOLD** | `/plan/gold` | `NEXT_PUBLIC_GOLD_POINTS` (1,000) |
+| **SILVER** | `/plan/silver` | `NEXT_PUBLIC_SILVER_POINTS` (300) |
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   # or
-   pnpm install
-   # or
-   bun install
-   ```
+Each tier has its own branded landing page, its own price, and its own purchase screen. Prices are environment-driven, so they can be repriced without a code change.
 
-3. **Set up environment variables**
-   ```bash
-   cp .env.example .env.local
-   ```
-   
-   Configure the following variables:
-   ```env
-   NEXT_PUBLIC_APP_ENV=development
-   NEXT_PUBLIC_HOST=http://localhost:3000
-   ```
+### Draw-day and cut-off gating
 
-4. **Run the development server**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   # or
-   bun dev
-   ```
+Sales are only open on LOTO 6 draw days (Monday / Thursday). On any other day the plan page shows "今日は販売中情報ではありません。" instead of a purchase link.
 
-## 📜 Available Scripts
+A hard **18:00 cut-off** applies. After that, the purchase link redirects to a sold-out page (`/plan/timeout`) rather than the purchase screen — the product is framed as a limited daily allocation, not an always-on generator.
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint with auto-fix
-- `npm run format` - Format code with Prettier
-- `npm run prepare` - Install Husky git hooks
+### One purchase per plan, per day
 
-## 🎨 UI Components
+Before rendering the buy link, the plan page asks the server whether the member already has a prediction for that plan today. If so, the link jumps straight to the existing result instead of offering another purchase. This keeps a member from paying twice for the same day's information.
 
-Use the shadcn/ui CLI to add new components:
+### Ownership-checked results
+
+Opening `/prediction/{plan}/{id}` fetches the stored prediction and verifies three things before displaying anything: the row belongs to the signed-in user, the plan in the URL matches the plan on the row, and the prediction was created today. Any mismatch bounces the visitor back to the plan page. Guessing an ID gets you nothing.
+
+Each result page also carries the mandatory Japanese gambling disclaimers (self-responsibility, 20+ only, no refunds, no liability).
+
+### Points wallet
+
+Points are the only currency in the app — there is no per-purchase checkout flow.
+
+- Balance lives on the user record and starts at 100 for new accounts
+- The current balance is always visible in the header, on both desktop and mobile
+- The purchase button is disabled with an explanatory message when the balance is short of the plan price
+- The top-up page (`/point-purchase`) offers 15 denominations from 50 to 5,000 points, alongside the payment and no-refund policy notices
+
+## Getting started
+
+**Prerequisites:** Node.js 18+ (22.x in production) and a reachable MySQL instance.
 
 ```bash
-npx shadcn@latest add <component-name>
+npm install
+cp .env.example .env   # then fill in the values below
+npm run dev            # http://localhost:3000
 ```
 
-## 🔧 State Management
+Create an empty database matching `DB_NAME`; the tables build themselves on the first request.
 
-### Redux Toolkit
-- Global application state
-- Dialog management
-- Type-safe selectors and actions
+### Environment variables
 
-### TanStack Query
-- Server state management
-- Caching and synchronization
-- Background updates
+```env
+# Database
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=lottery
 
-## 🔍 Code Quality
+# JWT signing
+ACCESS_TOKEN_SECRET=
+REFRESH_TOKEN_SECRET=
 
-- **ESLint** configuration with TypeScript support
-- **Prettier** for consistent code formatting
-- **Husky** git hooks for pre-commit checks
-- **TypeScript** strict mode enabled
+# Transactional email
+SENDGRID_API_KEY=
+SENDGRID_EMAIL_ADDRESS=
+SENDGRID_EMAIL_NAME=
 
-## 🚀 Deployment
+# Site
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_HOST=http://localhost:3000
 
-### Vercel (Recommended)
+# Contact details rendered on the contact page
+NEXT_PUBLIC_LINE_URL=
+NEXT_PUBLIC_PHONE_NUMBER=
+NEXT_PUBLIC_ADDRESS=
 
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Configure environment variables
-4. Deploy automatically
+# Plan pricing
+NEXT_PUBLIC_BLACK_POINTS=6000
+NEXT_PUBLIC_GOLD_POINTS=1000
+NEXT_PUBLIC_SILVER_POINTS=300
+```
 
-### Other Platforms
+### Scripts
 
-The project can be deployed to any platform that supports Next.js:
+| Command | Purpose |
+|---------|---------|
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm start` | Serve the production build |
+| `npm run lint` | ESLint with `--fix` |
+| `npm run format` | Prettier |
 
-- **Netlify**
-- **AWS Amplify**
-- **Railway**
-- **Docker** (with custom Dockerfile)
+---
 
-## 📚 Learn More
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs)
-- [shadcn/ui Documentation](https://ui.shadcn.com)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Redux Toolkit Documentation](https://redux-toolkit.js.org)
-- [TanStack Query Documentation](https://tanstack.com/query)
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+Pushing to `main` triggers a GitHub Actions workflow that builds the app, ships a tarball to the VPS over SCP, installs production dependencies and restarts the PM2 process — backing up the previous release first. Required secrets and the one-time server setup are documented in [DEPLOYMENT.md](DEPLOYMENT.md); workflow troubleshooting lives in [WORKFLOW.md](WORKFLOW.md).
